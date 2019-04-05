@@ -1,0 +1,56 @@
+<html>
+
+<head>
+	<title>PoriflePicker</title>
+	
+	<link rel="stylesheet" type="text/css" href="photoUpload.css"/>
+	<style>
+		body{
+			font-family: sans-serif;
+		}
+	</style>
+</head>
+
+<body>
+	<form>
+		<input type="hidden" name="profile-picture" />
+		<div class="photo-upload" data-photo-upload-name="profile-picture">
+			
+			<input type="file" accept="image/*;capture=camera"/>
+			<div class="underlay">
+				
+				<div class="instructions">
+					<p><b>Select photo</b>
+					</p>
+					(or drag-and-drop)
+				</div>
+			
+			
+			</div>
+			
+			<button class="use-camera">📷</button>
+			<input type="hidden" disabled class="" name="@Model.Name"/>
+			
+			<div class="progress"></div>
+			<div class="overlay"></div>
+			<div class="img-container">
+				<canvas class="image"></canvas>
+				<button class="clear">clear</button>
+			</div>
+			<p class="message filename"></p>
+			<p class="message status"></p>
+			<p class="message tip"></p>
+			
+			<canvas class="offscreen"></canvas>
+			<canvas class="result"></canvas>
+			<video autoplay loop></video>
+		</div>
+		
+		<script src="vendor/jquery-3.3.1.js"></script>
+		<script src="vendor/headtrackr.cascade.js"></script>
+		<script src="vendor/headtrackr.js"></script>
+		<script src="photoUpload.js"></script>
+	</form>
+
+</body>
+</html>
