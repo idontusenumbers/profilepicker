@@ -11,4 +11,5 @@ A jQuery widget to quickly and easily upload or capture a profile picture
 After capture, pan with drag-drop, zoom with mouse wheel
 
 # Limitations
-Repeatedly asks for permission to use camera, especially on localhost
+* Repeatedly asks for permission when served from local file system instead of web server
+* Not tested for accessibility

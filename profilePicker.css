@@ -1,0 +1,273 @@
+﻿.photo-display, .profile-picker {
+	height: 200px;
+	width: 200px;
+	box-sizing: border-box;
+}
+
+
+.profile-picker {
+	border: 1px dotted gray;
+	position: relative;
+	padding: 10px;
+	user-select: none;
+	font-family: sans-serif;
+}
+
+.profile-picker.dragover {
+	border-style: solid;
+}
+
+.profile-picker input[type=file] {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 0;
+	cursor: pointer;
+}
+
+.profile-picker.streaming input[type=file] {
+	display: none;
+}
+
+
+.profile-picker .underlay {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: move;
+	font-size: x-small;
+}
+
+.profile-picker .overlay,
+.profile-picker .underlay {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+}
+
+.profile-picker .underlay {
+	background: whitesmoke;
+}
+
+.profile-picker .underlay .instructions {
+	text-align: center;
+}
+
+.profile-picker input[type=file]:active + .underlay {
+	background: silver;
+}
+
+.profile-picker .overlay {
+	z-index: 1;
+}
+
+.profile-picker.success .overlay {
+	background: transparent;
+}
+
+.profile-picker.streaming .underlay .instructions,
+.profile-picker.uploading .underlay .instructions {
+	display: none;
+}
+
+.profile-picker.uploading .underlay {
+	background: white;
+}
+
+.profile-picker.uploading .overlay {
+	background: transparent
+}
+
+.profile-picker.error .overlay {
+	background: rgba(255, 0, 0, .3);
+}
+
+.profile-picker.dragover .overlay {
+	background: rgba(0, 0, 255, .3);
+}
+
+
+.profile-picker .progress {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	background-color: Highlight;
+}
+
+.profile-picker .tip,
+.profile-picker .status {
+	left: 3px;
+	right: 3px;
+	text-align: center;
+	z-index: 3;
+}
+
+.profile-picker .status {
+	bottom: 3px;
+	opacity: .7;
+}
+
+.profile-picker .tip {
+	top: 3px;
+	text-shadow: 0 0 2px black, 0 0 1px black;
+}
+
+.profile-picker .message:empty {
+	display: none;
+}
+
+.profile-picker.success .filename {
+	left: 3px;
+	bottom: 3px;
+}
+
+.profile-picker .filename,
+.profile-picker .status {
+	background: black;
+}
+
+.profile-picker .message {
+	position: absolute;
+	padding: 1px;
+	color: white;
+
+	font-size: xx-small;
+	margin: 0;
+	-pointer-events: none;
+	user-select: initial;
+}
+
+.profile-picker .message a {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.profile-picker .img-container {
+	display: none;
+}
+
+.profile-picker .img-container .image {
+	display: block;
+}
+
+.profile-picker .img-container img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	image-rendering: pixelated;
+}
+
+.profile-picker canvas.result {
+	display: none;
+}
+
+.profile-picker.streaming canvas.result {
+	cursor: pointer;
+	display: block;
+}
+
+.profile-picker.success .img-container {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: move;
+}
+
+
+.profile-picker.success:hover button.clear,
+.profile-picker.success:hover button.use-camera,
+.profile-picker.success:hover .filename {
+	opacity: .6;
+}
+.profile-picker.success:hover button.clear:hover,
+.profile-picker.success:hover button.use-camera,
+.profile-picker.success:hover .filename:hover {
+	opacity: 1;
+}
+
+.profile-picker.success button.use-camera,
+.profile-picker button.clear,
+.profile-picker .filename {
+	opacity: 0;
+	transition: opacity .15s;
+}
+
+.profile-picker.moving button.clear,
+.profile-picker.moving button.use-camera,
+.profile-picker.moving .filename {
+	opacity: 0 !important;
+}
+
+.profile-picker button.clear {
+
+	position: absolute;
+	bottom: 3px;
+	right: 3px;
+	font-size: xx-small;
+	padding: 0 2px;
+	border: 1px solid white;
+}
+
+
+.profile-picker button.use-camera {
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, 0);
+	bottom: 10px;
+	z-index: 1;
+}
+
+.profile-picker.uploading button.use-camera,
+.profile-picker.moving button.use-camera,
+.profile-picker.streaming button.use-camera {
+	display: none;
+}
+
+.profile-picker video,
+.profile-picker canvas {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.profile-picker video {
+	display: none;
+}
+
+.profile-picker canvas.offscreen {
+	margin-top: 900px;
+	-zoom: .3;
+	display: none; /* disable for debug*/
+}
+
+.profile-picker.loading::before {
+	opacity: .8;
+	cursor: default !important;
+	display: block;
+	position: absolute;
+	z-index: 2;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding-top: 1rem;
+	content: 'Loading...';
+	text-align: center;
+	background: whitesmoke;
+}

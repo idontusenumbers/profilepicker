@@ -1,0 +1,74 @@
+<html>
+
+<head>
+	<title>PoriflePicker</title>
+	
+	<link rel="stylesheet" type="text/css" href="profilePicker.css"/>
+	<style>
+		body{
+			font-family: sans-serif;
+		}
+	</style>
+</head>
+
+<body>
+<form>
+	<input type="hidden" name="profile-picture"/>
+	<div id="profile-picker" class="profile-picker loading" data-photo-upload-name="profile-picture">
+
+		<input type="file" accept="image/*;capture=camera"/>
+		<div class="underlay">
+
+			<div class="instructions">
+				<p><b>Select photo</b>
+				</p>
+				(or drag-and-drop)
+			</div>
+
+
+		</div>
+
+		<button class="use-camera">📷</button>
+		<input type="hidden" disabled class="" name="profileResult"/>
+
+		<div class="progress"></div>
+		<div class="overlay"></div>
+		<div class="img-container">
+			<canvas class="image"></canvas>
+			<button class="clear">clear</button>
+		</div>
+		<p class="message filename"></p>
+		<p class="message status"></p>
+		<p class="message tip"></p>
+
+		<canvas class="offscreen"></canvas>
+		<canvas class="result"></canvas>
+		<video autoplay loop></video>
+	</div>
+
+
+</form>
+
+<script>
+	var showImage = function () {
+		let src = $("#profile-picker").grabProfileResultAsDataUrl();
+
+		let result = $("#profileResult")[0];
+		result.title = src === null ? "(no image)" : "";
+		result.src = src;
+	};
+
+</script>
+
+<p>
+	<button onclick="showImage();">Show image</button>
+	<img id="profileResult">
+</p>
+
+
+		<script src="vendor/jquery-3.4.1.min.js"></script>
+		<script src="vendor/headtrackr.cascade.js"></script>
+		<script src="vendor/headtrackr.js"></script>
+		<script src="profilePicker.js"></script>
+</body>
+</html>
